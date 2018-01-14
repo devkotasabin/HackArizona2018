@@ -9,3 +9,7 @@ In the future, we would like to augment our analysis using various data sources 
 
 ## Tools Used
 python, scikit-learn, nltk, pandas, numpy, php, mysql, google charts API
+
+## Team Info
+We are a group of young caring people who want to develop technological solutions to combat depression and mental issues by recognizing signs of depression in people and reaching out to them. Team Anthem: Logic - 1-800-273-8255 ft. Alessia Cara & Khalid (Official Audio)
+
