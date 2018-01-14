@@ -1,0 +1,110 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['geochart'],
+        // Note: you will need to get a mapsApiKey for your project.
+        // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
+        'mapsApiKey': 'AIzaSyC8U5RqP2VK1zYM3OWZYSTxOS87mwxofhc'
+      });
+	  google.charts.load('current', {packages:['wordtree','corechart']});
+	  google.charts.setOnLoadCallback(initialize);  
+      google.charts.setOnLoadCallback(drawRegionsMap);
+	  google.charts.setOnLoadCallback(drawChart);
+	  google.charts.setOnLoadCallback(drawHistogram);
+
+	  //https://docs.google.com/spreadsheets/d/e/2PACX-1vSUUCqObwWik6gV20RBYsOFBVXiDyxU5BBa7sERdrbBTP2ZzzFlKg0sHBngHtEI1gwxnXo7dDpNkTYu/pubhtml
+	  function initialize() {
+	  var opts = {sendMethod: 'auto'};
+      // The URL of the spreadsheet to source data from.
+      var query = new google.visualization.Query('https://fusiontables.google.com/data?docid=1VlPiBCkYt_Vio-JT3UwM-U__APurJvPb6ZEJPg#rows:id=1');
+	  query.setQuery('select C');
+	  query.send(handleQueryResponse);
+	  }
+	  
+	  function handleQueryResponse(response)
+	  {
+		if(response.isError())
+		{
+			alert('Error in query: '+ response.getMessage() + ' ' + response.getDetailedMessage());
+		}
+	   var data = response.getDataTable();
+	   var options = {
+		//region: 'US',
+		displayMode: 'markers',
+		colorAxis: {colors: ['green', 'blue']},		
+		 };
+	   var chart = new google.visualization.GeoChart(document.getElementById('locations_div'));
+	   chart.draw(data, options);
+      };
+	  
+      function drawRegionsMap() {
+		
+		  var data = google.visualization.arrayToDataTable([
+			['City',   'Population', 'Area'],
+			['Tucson',      2761477,    1285.31],
+			['Phoenix',     1324110,    181.76],
+			['SierraVista',    959574,     117.27]
+
+		  ]);
+
+		  var options = {
+			region: 'US',
+			displayMode: 'markers',
+			colorAxis: {colors: ['green', 'blue']},		
+		  };
+		  
+        var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+
+        chart.draw(data, options);
+      }
+	  function drawChart() {
+			var data2 = google.visualization.arrayToDataTable([
+			  ['Task', 'Hours per Day'],
+			  ['Work',     11],
+			  ['Eat',      2],
+			  ['Commute',  2],
+			  ['Watch TV', 2],
+			  ['Sleep',    7]
+			]);
+		        var options = {
+          title: 'My Daily Activities',
+          pieHole: 0.4,
+        };
+
+        var chart2 = new google.visualization.PieChart(document.getElementById('donutchart'));
+        chart2.draw(data2, options);
+      }
+      function drawHistogram() {
+  var data = google.visualization.arrayToDataTable([
+    ['Quarks', 'Leptons', 'Gauge Bosons', 'Scalar Bosons'],
+    [2/3, -1, 0, 0],
+    [2/3, -1, 0, null],
+    [2/3, -1, 0, null],
+    [-1/3, 0, 1, null],
+    [-1/3, 0, -1, null],
+    [-1/3, 0, null, null],
+    [-1/3, 0, null, null]
+  ]);
+
+  var options = {
+    title: 'Charges of subatomic particles',
+    legend: { position: 'top', maxLines: 2 },
+    colors: ['#5C3292', '#1A8763', '#871B47', '#999999'],
+    interpolateNulls: false,
+  };
+
+        var chart = new google.visualization.Histogram(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+	  
+    </script>
+  </head>
+  <body>
+    <div id="wordtree_basic" style="width: 900px; height: 500px;"></div>
+    <div id="regions_div" style="width: 900px; height: 500px;"></div>
+	<div id="donutchart" style="width: 900px; height: 500px;",></div>
+	<div id="location_div" style="width: 900px; height: 500px;",></div>	
+  </body>
+</html>
+

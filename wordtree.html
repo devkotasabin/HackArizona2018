@@ -1,0 +1,46 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {packages:['wordtree']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable(
+          [ ['Sorry  My  pake  doesn t exist anymore'],
+          ['Just wanna cuddle till i fall asleep'],
+          ['Well I spent today a bit sick so how can you complain'],
+          ['Ive been screwed over by so many people in my life    trust broken  lied too  taken'],
+          ['Yesterday  tired Today  tired Tomorrow  tired Next week  tired Next month  tired Next year tired Next life  tired'],
+          ['Too often we confuse being loved with being used'],
+          ['Dont waste your time on revenge Those who hurt you will eventually face their own karma'],
+          ['The holidays can be rough  You are loved  you are heard  and you are not alone  Suicide Prevention'],
+          ['Im literally dying'],
+          ['Some people in your life are harder to take out then others    and thats a problem'],
+          ['I don t wanna get hurt again'],
+          ['me  younger   i wanna be huge  but like  i m afraid of drawing too much attention myself  there s a lot of stigma'],
+          ['im sad i laughed'],
+          ['There are nights full of anger  words that are thrown  tempers that are shattered and thin  But the moments of'],
+          ['Have you ever screamed inside your head so loud that you feel the frustration'],
+          ['How do you uninstall anxiety']
+
+
+          ]
+        );
+
+        var options = {
+          wordtree: {
+            format: 'implicit',
+            word: 'you'
+          }
+        };
+
+        var chart = new google.visualization.WordTree(document.getElementById('wordtree_basic'));
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="wordtree_basic" style="width: 900px; height: 500px;"></div>
+  </body>
+</html>
